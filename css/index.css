@@ -1,0 +1,110 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background: #515151;
+}
+#mine {
+  margin: 50px auto;
+}
+.level {
+  text-align: center;
+}
+.level button {
+  padding: 5px 15px;
+  border: none;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  color: #fff;
+  background-color: rgb(106, 153, 190);
+  outline: none;
+  cursor: pointer;
+}
+.level button.active {
+  background-color: rgb(72, 97, 114);
+}
+table {
+  margin: 20px auto;
+  border-spacing: 1px; /*表格的间距*/
+  background: #999;
+  user-select: none; /* 让用户不能选择字体 */
+}
+table td {
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  background: #ccc;
+  border: 2px solid;
+  border-color: #ddd #aaa #aaa #ddd;
+  cursor: pointer;
+  line-height: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.info {
+  margin-top: 20px;
+  text-align: center;
+  color: #fff;
+}
+.mine {
+  background: #d9d9d9 url('../img/mine.png') no-repeat center;
+  background-size: cover;
+  border-color: #d9d9d9;
+}
+.flag {
+  background: #ccc url('../img/flag.png') no-repeat center;
+  background-size: cover;
+}
+table td.zero {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+}
+table td.one {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+  color: #3636df;
+}
+table td.two {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+  color: #25e925;
+}
+table td.three {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+  color: #ff0000;
+}
+table td.four {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+  color: #dfa7c3;
+}
+table td.five {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+  color: #fab804;
+}
+table td.six {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+  color: #177881;
+}
+table td.seven {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+  color: #ac26a5;
+}
+table td.eight {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+  color: #969696;
+}
+table td.boom-mine {
+  background: #ff0000 url('../img/mine.png') no-repeat center;
+  background-size: cover;
+  border-color: #ff0000;
+}
