@@ -17,7 +17,6 @@ Mine.prototype.init = function () {
   for (let i = 0; i < this.tr; i++) {
     this.squares[i] = []
     for (let j = 0; j < this.td; j++) {
-      n++
       // 判断有雷的索引和表格的索引值是否一致，true为雷，false为数字
       if (randomMines.indexOf(n) != -1) {
         // 因为表格的行列的索引和坐标的索引是刚好相反的，而要存储的信息是坐标的数据，所以要反过来赋值
@@ -35,6 +34,7 @@ Mine.prototype.init = function () {
           value: 0, // 代表数字的值，初始为零
         }
       }
+      n++ // 确保0也可以判断进去
     }
   }
   mine.updateNum() // 更新数字
@@ -148,6 +148,9 @@ Mine.prototype.updateNum = function () {
   }
 }
 
+let mask = document.querySelector('.mask'), // 遮罩层
+  maskInfo = document.querySelector('.mask .info'),
+  maskInfoTitle = document.querySelector('.mask .info h1')
 // 开始游戏 传2个参数，第一个是event，第二个是哪个tdDom触发
 Mine.prototype.play = function (ev, obj) {
   ev = event || window.event // 兼容ie浏览器
@@ -262,10 +265,10 @@ Mine.prototype.play = function (ev, obj) {
 
     if (this.isAllRight) {
       this.gameOver()
-      alert('恭喜你，游戏胜利！')
+      maskInfoTitle.innerHTML = '游戏胜利'
     } else {
       this.gameOver()
-      alert('游戏失败！')
+      maskInfoTitle.innerHTML = '游戏失败'
     }
   }
 }
@@ -289,8 +292,15 @@ Mine.prototype.gameOver = function (obj) {
   // 如果有传参则运行
   if (obj) {
     obj.className = 'boom-mine' // 标记当前点击的雷
-    alert('游戏失败！')
+    maskInfoTitle.innerHTML = '游戏失败'
   }
+  mask.style.zIndex = 2
+  mask.style.opacity = 1
+  setTimeout(function () {
+    // 为了下一次还能显示动画，1秒后清除
+    maskInfo.style.animation = 'none'
+  }, 700)
+  maskInfo.style.animation = 'show-info .7s'
 }
 
 // 切换游戏level
@@ -301,7 +311,9 @@ let btns = document.querySelectorAll('.level button'),
     [10, 10, 10],
     [17, 17, 40],
     [28, 28, 99],
-  ]
+  ],
+  maskInfoBtn = document.querySelector('.mask .info button')
+
 // 排除重置按钮
 for (let i = 0; i < btns.length - 1; i++) {
   btns[i].onclick = function () {
@@ -315,8 +327,18 @@ for (let i = 0; i < btns.length - 1; i++) {
   }
 }
 // 重置按钮
-btns[3].onclick = function () {
+function reStart() {
   mine = new Mine(...arr[active])
   mine.init()
+  mask.style.zIndex = -1
+  mask.style.opacity = 0
+  setTimeout(function () {
+    // 为了下一次还能显示动画，1秒后清除
+    maskInfo.style.animation = 'none'
+  }, 1000)
+  maskInfo.style.animation = 'hide-info 1s'
 }
+btns[3].addEventListener('click', reStart)
+maskInfoBtn.addEventListener('click', reStart) // 遮罩层重新开始按钮
+
 btns[0].onclick() // 初始化默认选择初级
