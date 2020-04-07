@@ -2,19 +2,22 @@
   padding: 0;
   margin: 0;
 }
-/* body,
-html {
-  width: 100%;
-  height: 100%;
-} */
-body {
+:root {
   background: #515151;
 }
+:root,
+body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 #mine {
   position: relative;
   width: 100%;
   height: 100%;
   margin: 0 auto;
+  overflow-y: scroll; /* 为了弹出警告框时不能滚动 */
 }
 .level {
   text-align: center;

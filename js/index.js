@@ -294,6 +294,7 @@ Mine.prototype.gameOver = function (obj) {
     obj.className = 'boom-mine' // 标记当前点击的雷
     maskInfoTitle.innerHTML = '游戏失败'
   }
+
   mask.style.zIndex = 2
   mask.style.opacity = 1
   setTimeout(function () {
